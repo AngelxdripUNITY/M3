@@ -1,114 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WiFi Status</title>
-    <link rel="icon" href="https://upload.wikimedia.org/wikipedia/commons/6/69/Google_icon.svg" type="image/x-icon">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-            background: linear-gradient(135deg, #1e3c72, #2a5298);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-            position: relative;
-            overflow: hidden;
-            transition: background 1s ease-in-out, color 1s ease-in-out;
-        }
-        h1 {
-            font-size: 28px;
-            margin-bottom: 20px;
-        }
-        #status {
-            font-size: 20px;
-            font-weight: bold;
-            margin-bottom: 20px;
-            animation: dotAnimation 1.3s infinite steps(1);
-        }
-        @keyframes dotAnimation {
-            0% { content: "Waiting."; }
-            33% { content: "Waiting.."; }
-            66% { content: "Waiting..."; }
-        }
-        .bar-container {
-            width: 100%;
-            height: 5px;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            overflow: hidden;
-        }
-        .bar {
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, #2196F3, #BBDEFB);
-            animation: moveGradient 2s linear infinite;
-        }
-        @keyframes moveGradient {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
-        }
-        .bookmark-container {
-            position: fixed;
-            bottom: 20px;
-            width: 80%;
-            text-align: center;
-            font-size: 16px;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 10px;
-            border-radius: 10px;
-        }
-        .wifi-off-text {
-            display: none;
-        }
-    </style>
-</head>
-<body>
-    <h1 class="wifi-off-text">Please turn your WiFi off</h1>
-    <p id="status">Waiting.</p>
-    <div class="bar-container">
-        <div class="bar" id="bar"></div>
-    </div>
-    <div class="bookmark-container" id="bookmark-container" style="display: none;">
-        <p>WiFi is off! Bookmark <b>chrome-extension://haldlgldplgnggkjaafhelgiaglafanh/background.html</b> and click it.</p>
-        <p>Wait for it to load then close it.</p>
-        <p>And then turn WiFi back on.</p>
-        <p>To undo, click the bookmark again when WiFi is on.</p>
-    </div>
-    
-    <script>
-        function checkInternet() {
-            fetch("https://www.google.com", { mode: 'no-cors' })
-                .then(() => {
-                    document.body.style.transition = "background 1s ease-in-out, color 1s ease-in-out";
-                    document.body.style.background = "linear-gradient(135deg, #1e3c72, #2a5298)";
-                    document.body.style.color = "white";
-                    document.getElementById("status").innerText = "Waiting.";
-                    document.getElementById("bar").style.background = "linear-gradient(90deg, #2196F3, #BBDEFB)";
-                    document.getElementById("bookmark-container").style.display = "none";
-                    document.querySelector('.wifi-off-text').style.display = 'block';
-                    setTimeout(checkInternet, 1000);
-                })
-                .catch(() => {
-                    document.body.style.transition = "background 1s ease-in-out, color 1s ease-in-out";
-                    document.body.style.background = "linear-gradient(135deg, #2e7d32, #66bb6a)";
-                    document.body.style.color = "white";
-                    document.getElementById("status").innerText = "WiFi is off!";
-                    document.getElementById("bar").style.background = "linear-gradient(90deg, #4CAF50, #A5D6A7)";
-                    document.getElementById("bookmark-container").style.display = "block";
-                    document.querySelector('.wifi-off-text').style.display = 'none';
-                    setTimeout(checkInternet, 1000);
-                });
-        }
-        
-        checkInternet();
-    </script>
-</body>
+  <head>
+    <title>Rammerhead Browser</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1"/>
+    <link rel="shortcut icon" href="/favicon.png"/>
+    <script defer="defer" src="/static/js/main.4524ba43.js"></script>
+    <link href="/static/css/main.274aab96.css" rel="stylesheet">
+  </head>
+  <body>
+    <noscript>You're going to need to enable JavaScript to run this browser.</noscript>
+    <div id="root"></div>
+  </body>
 </html>
